@@ -1,0 +1,108 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Sentence Autocomplete Prediction</title>
+    <style> 
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: #1e293b;
+            color: #fff;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            box-sizing: border-box;
+            border: 2px solid #4f46e5;
+            border-radius: 4px;
+            font-size: 18px;
+            background-color: #2d3748;
+            color: white;
+            padding: 12px 20px 12px 20px;
+            width: 500px;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        input[type="text"]:focus {
+            width: 600px;
+            border-color: #818cf8;
+        }
+
+        .suggestion-wrap {
+            margin-top: 20px;
+        }
+
+        .suggestion-wrap span {
+            margin: 0 8px;
+            font-size: 18px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #374151;
+            color: #d1d5db;
+        }
+
+        .suggestion-wrap span:hover {
+            background-color: #4f46e5;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        fieldset {
+            border: none;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 800px;
+            background: #111827;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        legend {
+            font-size: 24px;
+            font-weight: 600;
+            color: #d1d5db;
+        }
+
+        .btn-search {
+            background: #4f46e5;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            font-size: 16px;
+            margin-left: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-search:hover {
+            background: #818cf8;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form method="POST" action="/predict">
+            <fieldset>
+                <legend>Type a Word or Phrase to See What Comes Next</legend>
+                <div>
+                    <input type="text" name="text" placeholder="Type here..." value="{{ s }}">
+                    <button class="btn-search" type="submit">Search</button>
+                </div>
+                <div class="suggestion-wrap">
+                    <h3>Suggested Words:</h3>
+                    {% for i in t %}
+                        <span>{{ i }}</span>
+                    {% endfor %}
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
