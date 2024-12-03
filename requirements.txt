@@ -1,5 +1,4 @@
-Flask
-Gunicorn
+
 aenum==2.2.1
 altair==4.0.0
 analytics-python==1.2.9
